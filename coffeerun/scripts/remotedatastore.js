@@ -29,6 +29,13 @@
       cb(serverResponse);
     });
   };
+
+  RemoteDataStore.prototype.remove = function (key) {
+    $.ajax(this.serverUrl + "/" + key, {
+      type: "DELETE"
+    });
+  };
+
   App.RemoteDataStore = RemoteDataStore;
   window.App = App;
 })(window);
