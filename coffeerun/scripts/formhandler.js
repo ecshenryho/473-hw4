@@ -29,6 +29,21 @@
       this.elements[0].focus();
     });
   };
+
+  FormHandler.prototype.addInputHandler = function(fn) {
+    console.log("Setting input handler for form");
+    this.$formElement.on("input", "[name=emailAddress]", function(event) {
+      var emailAddress = event.target.value;
+      var message = "";
+      if (fn(emailAddress)) {
+        event.target.setCustomValidity("");
+      }else {
+        message = emailAddress + " is not an authorized email address!";
+        event.target.setCustomValidity(message);
+      }
+    });
+  };
+
   FormHandler.prototype.addValidateHandler = function() {
     console.log("Setting validate handler for form");
     this.$formElement.on("submit", function(event) {
@@ -42,7 +57,7 @@
       var dataList = Object.values(data);
       var message;
       var i = 0;
-      for (; i < dataList.length;i++) {
+      for (; i < dataList.length; i++) {
         if (dataList[i] == "") {
           message = "<p>Please fill all information</p>";
           $(message).modal();
