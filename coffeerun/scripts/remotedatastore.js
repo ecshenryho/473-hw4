@@ -15,6 +15,11 @@
       console.log(serverResponse);
     });
   };
+  RemoteDataStore.prototype.getAll = function () {
+    $.get(this.serverUrl, function (serverResponse) {
+      console.log(serverResponse);
+    });
+  };
   App.RemoteDataStore = RemoteDataStore;
   window.App = App;
 })(window);
